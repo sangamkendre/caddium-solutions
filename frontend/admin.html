@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal | CADDium Engineered Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                        brand: ['Space Grotesk', 'Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="mesh-bg text-gray-100 antialiased min-h-screen relative font-sans">
+    
+    <!-- Login Modal -->
+    <div id="login-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/85 backdrop-blur-md">
+        <div class="glass-card p-8 rounded-2xl w-full max-w-sm text-center border border-white/10 shadow-2xl">
+            <div class="w-12 h-12 mx-auto mb-4">
+                <svg class="w-full h-full drop-shadow-[0_0_10px_rgba(0,166,255,0.6)]" viewBox="0 0 100 100" fill="none">
+                    <polygon points="50,6 88,27 50,47 12,27" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
+                    <polygon points="12,27 50,47 50,92 12,72" fill="#cbd5e1" stroke="#e2e8f0" stroke-width="1.5"/>
+                    <polygon points="64,66 88,52 88,72 50,92 50,72 64,66" fill="#0369a1"/>
+                </svg>
+            </div>
+            <h2 class="text-2xl font-black font-brand text-white mb-1">CADD<span class="text-cyan-400">i</span>um</h2>
+            <p class="text-[9px] text-gray-400 uppercase tracking-widest font-bold mb-6">ADMIN DISPATCH ACCESS</p>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <input type="password" id="admin-password" placeholder="Enter security passphrase..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 mb-4 transition text-sm" required>
+                <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-extrabold uppercase tracking-wider py-3 rounded-lg transition shadow-[0_0_15px_rgba(0,166,255,0.4)] text-xs">
+                    Authorize & Enter
+                </button>
+            </form>
+            <p id="login-error" class="text-red-400 text-xs mt-4 hidden">Invalid credentials. Please verify and retry.</p>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard-container" class="hidden">
+        <header class="w-full z-50 glass-card bg-slate-950/80 border-b border-white/10 backdrop-blur-md mb-8">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="/" class="flex items-center space-x-3 cursor-pointer group">
+                    <div class="w-9 h-9">
+                        <svg class="w-full h-full drop-shadow-[0_0_8px_rgba(0,166,255,0.6)]" viewBox="0 0 100 100" fill="none">
+                            <polygon points="50,6 88,27 50,47 12,27" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
+                            <polygon points="12,27 50,47 50,92 12,72" fill="#cbd5e1" stroke="#e2e8f0" stroke-width="1.5"/>
+                            <polygon points="64,66 88,52 88,72 50,92 50,72 64,66" fill="#0369a1"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-black font-brand tracking-tight text-white flex flex-col justify-center leading-none">
+                        CADD<span class="text-cyan-400">i</span>um
+                        <span class="text-[8px] text-cyan-400 font-bold tracking-widest uppercase mt-0.5">
+                            ADMIN DISPATCH CONSOLE
+                        </span>
+                    </span>
+                </a>
+
+                <!-- Navigation between Leads and Products -->
+                <div class="flex items-center bg-slate-900 border border-white/10 rounded-xl p-1 text-xs font-bold">
+                    <button id="nav-tab-leads" onclick="switchAdminTab('leads')" class="px-4 py-2 rounded-lg transition bg-cyan-500 text-black font-extrabold shadow">
+                        <i class="fa-solid fa-inbox mr-1.5"></i> Leads
+                    </button>
+                    <button id="nav-tab-products" onclick="switchAdminTab('products')" class="px-4 py-2 rounded-lg transition text-gray-300 hover:text-white">
+                        <i class="fa-solid fa-cube mr-1.5"></i> Products Manager
+                    </button>
+                </div>
+
+                <div class="flex items-center gap-6">
+                    <button onclick="logout()" class="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-wider transition">
+                        <i class="fa-solid fa-right-from-bracket mr-1"></i> Exit
+                    </button>
+                    <a href="/" class="text-gray-300 hover:text-cyan-400 font-bold uppercase tracking-wider text-xs transition flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-left"></i> Live Site
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-6 pb-20">
+            
+            <!-- SECTION 1: LEADS DISPATCH VIEW -->
+            <div id="view-leads">
+                <div class="mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                    <div>
+                        <span class="text-cyan-400 font-mono text-xs uppercase tracking-widest font-bold">CADDium Lead Pipeline</span>
+                        <h1 class="text-3xl md:text-4xl font-heading font-black text-white mt-1 mb-2">Discovery Scopes & Consultations</h1>
+                        <p class="text-gray-400 text-sm">Review, track, and export enterprise leads across the 4 CADDium disciplines.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button onclick="downloadCSV()" class="px-4 py-2.5 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 rounded-lg text-xs font-bold uppercase tracking-wider transition flex items-center gap-2">
+                            <i class="fa-solid fa-file-csv"></i> Export CSV
+                        </button>
+                        <button onclick="fetchLeads()" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-lg text-xs font-bold uppercase tracking-wider transition flex items-center gap-2">
+                            <i class="fa-solid fa-rotate-right"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-white/5 border-b border-white/10 text-xs font-bold uppercase tracking-wider text-gray-400">
+                                    <th class="px-6 py-4 whitespace-nowrap">Timestamp</th>
+                                    <th class="px-6 py-4">Client Contact</th>
+                                    <th class="px-6 py-4">Organization</th>
+                                    <th class="px-6 py-4">Selected Pillars & Scope</th>
+                                    <th class="px-6 py-4 whitespace-nowrap">Urgency</th>
+                                    <th class="px-6 py-4 whitespace-nowrap text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leads-table-body" class="divide-y divide-white/5">
+                                <!-- Injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2: PRODUCTS MANAGER VIEW -->
+            <div id="view-products" class="hidden">
+                <div class="mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                    <div>
+                        <span class="text-cyan-400 font-mono text-xs uppercase tracking-widest font-bold">CADDium Product Suite</span>
+                        <h1 class="text-3xl md:text-4xl font-heading font-black text-white mt-1 mb-2">Engineered Products Manager</h1>
+                        <p class="text-gray-400 text-sm">Add, update, or remove live applications displayed on the main website.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button id="btn-open-add-product" onclick="openAddProductModal()" class="px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-extrabold uppercase tracking-wider rounded-lg text-xs transition shadow-lg shadow-cyan-500/25 flex items-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-plus"></i> Add New Product
+                        </button>
+                        <button onclick="fetchAdminProducts()" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-lg text-xs font-bold uppercase tracking-wider transition flex items-center gap-2">
+                            <i class="fa-solid fa-rotate-right"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-white/5 border-b border-white/10 text-xs font-bold uppercase tracking-wider text-gray-400">
+                                    <th class="px-6 py-4">Pillar</th>
+                                    <th class="px-6 py-4">Product Name & Tagline</th>
+                                    <th class="px-6 py-4">Live Deployment URL</th>
+                                    <th class="px-6 py-4">Key Features</th>
+                                    <th class="px-6 py-4 whitespace-nowrap text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-table-body" class="divide-y divide-white/5">
+                                <!-- Injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Add / Edit Product Modal -->
+    <div id="product-modal" class="fixed inset-0 z-50 items-center justify-center bg-black/85 backdrop-blur-md opacity-0 transition-opacity duration-300 px-4" style="display: none;">
+        <div class="glass-card bg-slate-950 border border-white/10 rounded-2xl max-w-lg w-full overflow-hidden relative shadow-2xl">
+            <div class="p-6 border-b border-white/10 bg-slate-900/60 flex justify-between items-center">
+                <h3 class="text-xl font-black font-brand text-white flex items-center gap-2">
+                    <i class="fa-solid fa-cube text-cyan-400"></i> Add New Engineered Product
+                </h3>
+                <button onclick="closeProductModal()" class="text-gray-400 hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="product-form" onsubmit="handleSaveProduct(event)" class="p-6 space-y-4 max-h-[75vh] overflow-y-auto text-xs">
+                <div>
+                    <label class="block font-bold text-gray-400 uppercase tracking-widest mb-1">Product Name *</label>
+                    <input type="text" id="prod-name" required placeholder="e.g., Smart Inventory Suite" class="w-full p-3 bg-slate-900 border border-white/10 text-white rounded-lg text-sm">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-gray-400 uppercase tracking-widest mb-1">Pillar Category *</label>
+                        <select id="prod-pillar" required class="w-full p-3 bg-slate-900 border border-white/10 text-white rounded-lg text-sm">
+                            <option value="software">CADDium Software</option>
+                            <option value="data">CADDium Data</option>
+                            <option value="ai">CADDium AI</option>
+                            <option value="iot">CADDium IoT</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-400 uppercase tracking-widest mb-1">Status Badge</label>
+                        <input type="text" id="prod-status" value="Live Production App" placeholder="Live Production App" class="w-full p-3 bg-slate-900 border border-white/10 text-white rounded-lg text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-gray-400 uppercase tracking-widest mb-1">Live Deployment URL *</label>
+                    <input type="url" id="prod-url" required placeholder="https://your-product.onrender.com" class="w-full p-3 bg-slate-900 border border-white/10 text-white rounded-lg text-sm font-mono">
+                </div>
+
+                <div>
+                    <label class="block font-bold text-gray-400 uppercase tracking-widest mb-1">Short Tagline *</label>
+                    <input type="text" id="prod-tagline" required placeholder="e.g., Automated Stock Safety & Reorder Triggers" class="w-full p-3 bg-slate-900 border border-white/10 text-white rounded-lg text-sm">
+                </div>
+
+                <div>
+                    <label class="block font-bold text-gray-400 uppercase tracking-widest mb-1">Full Description</label>
+                    <textarea id="prod-desc" rows="2" placeholder="Describe the problem this product solves and who it is for..." class="w-full p-3 bg-slate-900 border border-white/10 text-white rounded-lg text-sm"></textarea>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-gray-400 uppercase tracking-widest mb-1">Key Feature Highlights (One per line)</label>
+                    <textarea id="prod-highlights" rows="3" placeholder="Real-Time Barcode & SKU Auto-Scanning&#10;Automated Vendor Reorder Dispatches&#10;Daily Stock Depletion Analytics" class="w-full p-3 bg-slate-900 border border-white/10 text-white rounded-lg text-sm"></textarea>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-gray-400 uppercase tracking-widest mb-1">Tech Stack Tags (Comma separated)</label>
+                    <input type="text" id="prod-tags" placeholder="Node.js, Express, PostgreSQL, Cloud Hosted" class="w-full p-3 bg-slate-900 border border-white/10 text-white rounded-lg text-sm">
+                </div>
+
+                <div class="pt-4 border-t border-white/10 flex justify-end gap-3">
+                    <button type="button" onclick="closeProductModal()" class="px-4 py-2.5 rounded-lg bg-slate-800 text-gray-400 hover:text-white transition font-bold uppercase tracking-wider">Cancel</button>
+                    <button type="submit" class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-extrabold uppercase tracking-wider transition shadow-lg shadow-cyan-500/25">
+                        Publish Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

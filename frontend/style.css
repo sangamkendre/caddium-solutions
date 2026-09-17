@@ -1,0 +1,456 @@
+/* CADDium Engineered Solutions Design System & Styling Tokens */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-dark-main: #040813;
+    --bg-dark-card: rgba(10, 17, 34, 0.55);
+    --bg-dark-hover: rgba(18, 29, 58, 0.75);
+    --border-color: rgba(255, 255, 255, 0.09);
+    
+    /* 4 CADDium Pillar Thematic Palettes */
+    --color-iot: #00a6ff;         /* CADDium IoT Cyan Blue */
+    --color-iot-glow: rgba(0, 166, 255, 0.35);
+    --color-data: #10b981;        /* CADDium Data Emerald Green */
+    --color-data-glow: rgba(16, 185, 129, 0.35);
+    --color-software: #f97316;    /* CADDium Software Amber Orange */
+    --color-software-glow: rgba(249, 115, 22, 0.35);
+    --color-ai: #a855f7;          /* CADDium AI Cyber Violet */
+    --color-ai-glow: rgba(168, 85, 247, 0.35);
+
+    --color-cyan-bright: #00f0ff;
+    --color-primary: #00a6ff;
+    --color-secondary: #a855f7;
+    --color-accent: #00f0ff;
+    --color-success: #10b981;
+    --color-warning: #f97316;
+
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-brand: 'Space Grotesk', 'Outfit', sans-serif;
+}
+
+/* Reset & Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    background-color: var(--bg-dark-main);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+}
+
+body {
+    overflow-x: hidden;
+    background-color: var(--bg-dark-main);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+}
+
+.font-brand {
+    font-family: var(--font-brand);
+}
+
+.font-mono-custom {
+    font-family: var(--font-mono);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-dark-main);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 166, 255, 0.3);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 166, 255, 0.6);
+}
+
+/* CADDium Ambient Mesh Grid Background */
+.mesh-bg {
+    background-color: var(--bg-dark-main);
+    background-image: 
+        radial-gradient(at 10% 10%, rgba(0, 166, 255, 0.12) 0px, transparent 45%),
+        radial-gradient(at 90% 15%, rgba(168, 85, 247, 0.12) 0px, transparent 45%),
+        radial-gradient(at 30% 85%, rgba(16, 185, 129, 0.08) 0px, transparent 45%),
+        radial-gradient(at 80% 90%, rgba(249, 115, 22, 0.08) 0px, transparent 45%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--bg-dark-card);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.5);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+    background: var(--bg-dark-hover);
+    border-color: rgba(0, 166, 255, 0.3);
+    box-shadow: 0 16px 45px -10px rgba(0, 166, 255, 0.22);
+    transform: translateY(-4px);
+}
+
+/* The 4 CADDium Pillar Cards Custom Styling */
+.pillar-card {
+    position: relative;
+    border-radius: 1.25rem;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(10, 16, 32, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    overflow: hidden;
+}
+
+/* 1. CADDium IoT (Cyan/Blue) */
+.pillar-card-iot {
+    border: 1.5px solid rgba(0, 166, 255, 0.32);
+    box-shadow: 0 8px 30px -5px rgba(0, 166, 255, 0.12);
+}
+.pillar-card-iot:hover {
+    border-color: rgba(0, 200, 255, 0.85);
+    box-shadow: 0 0 35px rgba(0, 166, 255, 0.3), inset 0 0 20px rgba(0, 166, 255, 0.08);
+    transform: translateY(-6px);
+}
+.pillar-card-iot .pillar-accent-glow {
+    background: radial-gradient(circle at top right, rgba(0, 166, 255, 0.22), transparent 70%);
+}
+
+/* 2. CADDium Data (Emerald/Green) */
+.pillar-card-data {
+    border: 1.5px solid rgba(16, 185, 129, 0.32);
+    box-shadow: 0 8px 30px -5px rgba(16, 185, 129, 0.12);
+}
+.pillar-card-data:hover {
+    border-color: rgba(52, 211, 153, 0.85);
+    box-shadow: 0 0 35px rgba(16, 185, 129, 0.3), inset 0 0 20px rgba(16, 185, 129, 0.08);
+    transform: translateY(-6px);
+}
+.pillar-card-data .pillar-accent-glow {
+    background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.22), transparent 70%);
+}
+
+/* 3. CADDium Software (Amber/Orange) */
+.pillar-card-software {
+    border: 1.5px solid rgba(249, 115, 22, 0.32);
+    box-shadow: 0 8px 30px -5px rgba(249, 115, 22, 0.12);
+}
+.pillar-card-software:hover {
+    border-color: rgba(251, 146, 60, 0.85);
+    box-shadow: 0 0 35px rgba(249, 115, 22, 0.3), inset 0 0 20px rgba(249, 115, 22, 0.08);
+    transform: translateY(-6px);
+}
+.pillar-card-software .pillar-accent-glow {
+    background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.22), transparent 70%);
+}
+
+/* 4. CADDium AI (Cyber Purple) */
+.pillar-card-ai {
+    border: 1.5px solid rgba(168, 85, 247, 0.32);
+    box-shadow: 0 8px 30px -5px rgba(168, 85, 247, 0.12);
+}
+.pillar-card-ai:hover {
+    border-color: rgba(192, 132, 252, 0.85);
+    box-shadow: 0 0 35px rgba(168, 85, 247, 0.3), inset 0 0 20px rgba(168, 85, 247, 0.08);
+    transform: translateY(-6px);
+}
+.pillar-card-ai .pillar-accent-glow {
+    background: radial-gradient(circle at top right, rgba(168, 85, 247, 0.22), transparent 70%);
+}
+
+/* Action Verbs Pills (CONNECT • AUTOMATE • DEPLOY etc) */
+.action-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+}
+
+.pillar-card-iot .action-pill {
+    color: #bae6fd;
+    border-color: rgba(0, 166, 255, 0.25);
+}
+.pillar-card-iot .action-pill:hover {
+    background: rgba(0, 166, 255, 0.15);
+    border-color: rgba(0, 166, 255, 0.6);
+    color: #fff;
+}
+
+.pillar-card-data .action-pill {
+    color: #a7f3d0;
+    border-color: rgba(16, 185, 129, 0.25);
+}
+.pillar-card-data .action-pill:hover {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.6);
+    color: #fff;
+}
+
+.pillar-card-software .action-pill {
+    color: #fed7aa;
+    border-color: rgba(249, 115, 22, 0.25);
+}
+.pillar-card-software .action-pill:hover {
+    background: rgba(249, 115, 22, 0.15);
+    border-color: rgba(249, 115, 22, 0.6);
+    color: #fff;
+}
+
+.pillar-card-ai .action-pill {
+    color: #e9d5ff;
+    border-color: rgba(168, 85, 247, 0.25);
+}
+.pillar-card-ai .action-pill:hover {
+    background: rgba(168, 85, 247, 0.15);
+    border-color: rgba(168, 85, 247, 0.6);
+    color: #fff;
+}
+
+/* Brand Typography & Metallic Gradient Text */
+.metallic-text {
+    background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 45%, #94a3b8 70%, #f8fafc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.caddium-brand-title {
+    font-family: var(--font-brand);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+}
+
+.caddium-dot {
+    display: inline-block;
+    width: 0.28em;
+    height: 0.28em;
+    border-radius: 50%;
+    background-color: var(--color-cyan-bright);
+    box-shadow: 0 0 12px var(--color-cyan-bright), 0 0 24px rgba(0, 240, 255, 0.8);
+    animation: neon-pulse 2s infinite ease-in-out;
+}
+
+@keyframes neon-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.9;
+        box-shadow: 0 0 10px var(--color-cyan-bright), 0 0 20px rgba(0, 240, 255, 0.8);
+    }
+    50% {
+        transform: scale(1.18);
+        opacity: 1;
+        box-shadow: 0 0 16px var(--color-cyan-bright), 0 0 32px rgba(0, 240, 255, 1);
+    }
+}
+
+/* Architecture Flow Connector Arrow */
+.flow-arrow-down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+.flow-arrow-down::before {
+    content: "";
+    width: 2px;
+    height: 38px;
+    background: linear-gradient(180deg, rgba(0, 166, 255, 0.8), rgba(168, 85, 247, 0.8));
+    animation: flow-pulse 2s infinite;
+}
+
+@keyframes flow-pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+/* Glow Blobs */
+.glow-blob {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    animation: pulse-glow 10s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-glow {
+    0% {
+        transform: scale(1) translate(0px, 0px);
+        opacity: 0.25;
+    }
+    100% {
+        transform: scale(1.25) translate(30px, -25px);
+        opacity: 0.45;
+    }
+}
+
+/* Interactive SVG path dash drawing */
+.animate-dash {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 2.5s forwards ease-out;
+}
+
+@keyframes draw-line {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Scroll Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Modern Input Focus */
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-iot) !important;
+    box-shadow: 0 0 0 3px rgba(0, 166, 255, 0.2) !important;
+    background-color: rgba(10, 16, 32, 0.9) !important;
+}
+
+/* Custom Interactive States */
+.card-active {
+    border-color: rgba(0, 166, 255, 0.7) !important;
+    box-shadow: 0 0 24px rgba(0, 166, 255, 0.25) !important;
+}
+
+/* Multi-Step Modal styling */
+.modal-overlay {
+    background: rgba(3, 7, 18, 0.85);
+    backdrop-filter: blur(12px);
+}
+
+#consultation-modal, #details-modal, #product-modal {
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+#consultation-modal:not(.show-modal), #details-modal:not(.show-modal), #product-modal:not(.show-modal) {
+    display: none !important;
+    pointer-events: none !important;
+}
+
+#consultation-modal.show-modal, #details-modal.show-modal, #product-modal.show-modal {
+    display: flex !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* Pulse indicator dots */
+.pulse-indicator {
+    position: relative;
+}
+.pulse-indicator::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-cyan-bright);
+    border-radius: 50%;
+    right: -2px;
+    top: -2px;
+    animation: pulse-ring 1.8s infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.7);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2.4);
+        opacity: 0;
+    }
+}
+
+/* Grid overlay background */
+.grid-mesh {
+    position: relative;
+}
+.grid-mesh::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Terminal & Code Block styling */
+.terminal-window {
+    background: #030611;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* Glowing Border Sweep Effect */
+@keyframes border-sweep {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.gradient-border-glow {
+    position: relative;
+}
+.gradient-border-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(90deg, #00a6ff, #10b981, #f97316, #a855f7, #00a6ff);
+    background-size: 300% 300%;
+    animation: border-sweep 8s linear infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}

@@ -1,0 +1,39 @@
+[
+  {
+    "id": "1784136331148",
+    "timestamp": "2026-07-15T17:25:31.148Z",
+    "clientName": "samir patil",
+    "email": "sangamkendre51@gmail.com",
+    "company": "3aia solution",
+    "technologies": [
+      "IoT"
+    ],
+    "goals": "i want data to my dash boards ",
+    "urgency": "Exploring"
+  },
+  {
+    "id": "1784213337589",
+    "timestamp": "2026-07-16T14:48:57.589Z",
+    "clientName": "Sangam Kendre",
+    "email": "sangamkendre51@gmail.com",
+    "company": "techsolu",
+    "technologies": [
+      "IoT"
+    ],
+    "goals": "jhgdfrhr",
+    "urgency": "Medium"
+  },
+  {
+    "id": "1789646835249",
+    "timestamp": "2026-09-17T12:07:15.249Z",
+    "clientName": "Aditya Patil",
+    "email": "aditya@industrialcore.com",
+    "company": "Apex Dynamics",
+    "technologies": [
+      "CADDium IoT",
+      "CADDium AI"
+    ],
+    "goals": "Deploying edge telemetry and predictive spindle maintenance",
+    "urgency": "Medium"
+  }
+]

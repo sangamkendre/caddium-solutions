@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: caddium-engineered-solutions
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 18.20.0
+      - key: ADMIN_PASSWORD
+        value: caddium2026

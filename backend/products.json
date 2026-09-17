@@ -1,0 +1,48 @@
+[
+  {
+    "id": "student-management-system",
+    "name": "Student Management System",
+    "pillar": "software",
+    "pillarLabel": "CADDium Software",
+    "tagline": "Centralized Academic Operations & Student Lifecycle Platform",
+    "description": "An all-in-one educational ERP engineered for schools, universities, and coaching institutes. Handles the complete student lifecycle from enrollment and attendance tracking to dynamic gradebooks and administrative reporting.",
+    "liveUrl": "https://student-management-system-j79l.onrender.com",
+    "highlights": [
+      "Student Profiles & Roll-Number Directory",
+      "Real-Time Attendance Tracker & Absentee Logs",
+      "Gradebook Analytics & Exam Performance Cards",
+      "Secure Cloud Infrastructure & Role-Based Access Control"
+    ],
+    "techTags": [
+      "Full-Stack Web",
+      "REST Backend",
+      "PostgreSQL",
+      "Cloud Hosted"
+    ],
+    "status": "Live Production App",
+    "createdAt": "2026-09-17T17:45:00.000Z"
+  },
+  {
+    "id": "data-cleaner-pro",
+    "name": "Data Cleaner Pro",
+    "pillar": "data",
+    "pillarLabel": "CADDium Data",
+    "tagline": "Automated Data Scrubbing, Deduplication & Pipeline Normalizer",
+    "description": "An intelligent data sanitation engine built to turn raw, chaotic spreadsheets and database dumps into production-ready datasets. Automatically detects duplicate rows, repairs broken dates/phones, and imputes null values.",
+    "liveUrl": "https://data-cleaner-pro-o97n.onrender.com",
+    "highlights": [
+      "Multi-Field Duplicate Record Elimination",
+      "Phone Number, Date & Email Standardization",
+      "Missing Value & Anomaly Null Scrubbing",
+      "Instant Export to Sanitized CSV, JSON & SQL Queries"
+    ],
+    "techTags": [
+      "ETL Automation",
+      "Regex Parsers",
+      "CSV / Excel",
+      "Cloud Hosted"
+    ],
+    "status": "Live Production App",
+    "createdAt": "2026-09-17T17:45:00.000Z"
+  }
+]
